@@ -1,8 +1,8 @@
 package com.nick.wallet_service.repository;
 
-import com.nick.wallet_service.model.User;
+import com.nick.wallet_service.model.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface ProfileRepository extends JpaRepository<Profile, UUID> {
 }

@@ -2,6 +2,7 @@ package com.nick.wallet_service.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -10,15 +11,16 @@ public class Account {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @OneToOne(mappedBy = "account")
-    private User user;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id", unique = true)
+    private Profile profile;
 
-    private Long accountNumber;
-    private float balance = 0;
+    private UUID accountNumber;
+    private BigDecimal balance;
 
     public Account(){}
 
-    public Account(UUID id, Long accountNumber, float balance) {
+    public Account(UUID id, UUID accountNumber, BigDecimal balance) {
         this.id = id;
         this.accountNumber = accountNumber;
         this.balance = balance;
@@ -28,11 +30,27 @@ public class Account {
         return id;
     }
 
-    public Long getAccountNumber() {
+    public UUID getAccountNumber() {
         return accountNumber;
     }
 
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setAccountNumber(UUID accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+
 }

@@ -1,37 +1,24 @@
-package com.nick.wallet_service.model;
+package com.nick.wallet_service.dto;
 
-import jakarta.persistence.*;
+import java.math.BigDecimal;
 
-import java.util.Date;
-
-@Entity
-@Table(name = "wallet_users")
-public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
-
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "account_id", unique = true)
-    private Account account;
-
-
+public class CreateAccountRequest {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String dob;
+    private BigDecimal initialDeposit;
 
+    public CreateAccountRequest(){}
 
-    public User(){}
-
-    public User(String firstName, String lastName, String email, String password, String dob) {
+    public CreateAccountRequest(String firstName, String lastName, String email, String password, String dob, BigDecimal initialDeposit) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.dob = dob;
+        this.initialDeposit = initialDeposit;
     }
 
     public void setFirstName(String firstName) {
@@ -54,6 +41,10 @@ public class User {
         this.dob = dob;
     }
 
+    public void setInitialDeposit(BigDecimal initialDeposit) {
+        this.initialDeposit = initialDeposit;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -74,4 +65,8 @@ public class User {
         return dob;
     }
 
+    public BigDecimal getInitialDeposit() {
+        return initialDeposit;
+    }
 }
+

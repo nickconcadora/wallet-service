@@ -12,7 +12,7 @@
 	<artifactId>wallet-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>wallet-service</name>
-	<description>A Spring Boot backend service for managing wallet balances, transactions, and user transfers with ACID-safe ledger operations.</description>
+	<description>A Spring Boot backend service for managing wallet balances, transactions, and profile transfers with ACID-safe ledger operations.</description>
 	<url/>
 	<licenses>
 		<license/>
