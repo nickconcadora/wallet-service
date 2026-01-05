@@ -25,34 +25,22 @@ public class AccountService {
         String dob = createAccountRequest.getDob();
         BigDecimal initialDeposit = createAccountRequest.getInitialDeposit();
 
-        Profile newProfile = new Profile();
-        newProfile.setFirstName(firstName);
-        newProfile.setLastName(lastName);
-        newProfile.setEmail(email);
-        newProfile.setPassword(password);
-        newProfile.setDob(dob);
-
-        Account newAccount = new Account();
-        newAccount.setAccountNumber(UUID.randomUUID());
-        newAccount.setBalance(initialDeposit);
+        Account newAccount = new Account(UUID.randomUUID(), initialDeposit);
+        Profile newProfile = new Profile(firstName, lastName, email, password, dob);
 
         newProfile.setAccount(newAccount);
         newAccount.setProfile(newProfile);
 
         accountRepository.save(newAccount);
 
-        CreateAccountResponse resp = new CreateAccountResponse();
-        resp.setFirstName(newProfile.getFirstName());
-        resp.setLastName(newProfile.getLastName());
-        resp.setEmail(newProfile.getEmail());
-        resp.setDob(newProfile.getDob());
-        resp.setAccountNumber(newAccount.getAccountNumber());
-        resp.setBalance(newAccount.getBalance());
-
-        return resp;
-
-
-
+        return new CreateAccountResponse(
+                newProfile.getFirstName(),
+                newProfile.getLastName(),
+                newProfile.getEmail(),
+                newProfile.getDob(),
+                newAccount.getAccountNumber(),
+                newAccount.getBalance()
+        );
     }
 
 

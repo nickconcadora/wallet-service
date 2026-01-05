@@ -10,6 +10,10 @@ public class Transaction {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
+
     private Long transactionAmount;
     private Date timestamp;
     private String referenceId;

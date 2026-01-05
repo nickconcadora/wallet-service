@@ -3,6 +3,7 @@ package com.nick.wallet_service.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,13 +16,15 @@ public class Account {
     @JoinColumn(name = "profile_id", unique = true)
     private Profile profile;
 
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transaction> transaction;
+
     private UUID accountNumber;
     private BigDecimal balance;
 
     public Account(){}
 
-    public Account(UUID id, UUID accountNumber, BigDecimal balance) {
-        this.id = id;
+    public Account(UUID accountNumber, BigDecimal balance) {
         this.accountNumber = accountNumber;
         this.balance = balance;
     }

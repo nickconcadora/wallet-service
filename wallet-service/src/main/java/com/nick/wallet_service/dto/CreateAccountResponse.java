@@ -15,6 +15,15 @@ public class CreateAccountResponse {
 
     public CreateAccountResponse() {}
 
+    public CreateAccountResponse(String firstName, String lastName, String email, String dob, UUID accountNumber, BigDecimal balance) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dob = dob;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

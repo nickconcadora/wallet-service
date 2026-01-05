@@ -25,13 +25,12 @@ public class Profile {
 
     public Profile(){}
 
-    public Profile(String firstName, String lastName, String email, String password, String dob, Account account) {
+    public Profile(String firstName, String lastName, String email, String password, String dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.dob = dob;
-        this.account = account;
     }
 
     public void setFirstName(String firstName) {
